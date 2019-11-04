@@ -1,5 +1,5 @@
 [package]
-name = "minigrep"
+name = "rust-thebook-12"
 version = "0.1.0"
 authors = ["Yusuke Tanaka <wing0920@gmail.com>"]
 edition = "2018"
