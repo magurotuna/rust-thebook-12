@@ -12,6 +12,7 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
+#[derive(Debug, PartialEq)]
 pub struct Config {
     pub query: String,
     pub filename: String,
@@ -25,5 +26,29 @@ impl Config {
         let query = args[1].to_string();
         let filename = args[2].to_string();
         Ok(Config { query, filename })
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn config_new() {
+        let args = [
+            "hoge".to_string(),
+            "piyo".to_string(),
+            "fuga".to_string(),
+            "foo".to_string(),
+            "bar".to_string(),
+        ];
+        assert_eq!(Err("not enough arguments"), Config::new(&args[0..2]));
+        assert_eq!(
+            Ok(Config {
+                query: "piyo".to_string(),
+                filename: "fuga".to_string(),
+            }),
+            Config::new(&args[0..3])
+        );
     }
 }
